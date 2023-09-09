@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "allowUnreachableCode": false,
+        "alwaysStrict": true,
+        "baseUrl": ".",
+        "checkJs": false,
+        "declaration": true,
+        "esModuleInterop": true,
+        "jsx": "react-jsx",
+        "lib": [
+            "ES2022"
+        ],
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "newLine": "lf",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": false,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "outDir": "dev-build",
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES2022",
+        "useDefineForClassFields": true
+    },
+    "exclude": [
+        "build",
+        "dev-build",
+        "node_modules"
+    ],
+    "includes": [
+        "src/**/*",
+    ]
+}
