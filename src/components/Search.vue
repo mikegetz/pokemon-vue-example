@@ -6,8 +6,13 @@ const searchInput = ref('');
 const pokemonImg = ref('');
 
 const makeRequest = async () => {
-  const result = await pokemonRequest(searchInput.value);
-  pokemonImg.value = result.data.sprites.other["official-artwork"].front_default
+  try {
+    const result = await pokemonRequest(searchInput.value.toLowerCase());
+    pokemonImg.value = result.data.sprites.other["official-artwork"].front_default
+  } catch (e) {
+    //TODO: banner
+  }
+  searchInput.value = "";
 };
 </script>
 
