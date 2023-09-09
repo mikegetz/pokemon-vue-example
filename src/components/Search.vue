@@ -6,7 +6,6 @@ const searchInput = ref('');
 const pokemonImg = ref('');
 
 const makeRequest = async () => {
-  console.log(searchInput.value);
   const result = await pokemonRequest(searchInput.value);
   pokemonImg.value = result.data.sprites.other["official-artwork"].front_default
 };
@@ -14,13 +13,15 @@ const makeRequest = async () => {
 
 <template>
     <div class="max-w-screen-lg m-auto mt-24">
-    <div class="flex flex-wrap justify-center">
-      <input type="text" v-model="searchInput" v-on:keyup.enter="makeRequest" placeholder="search pokemon"/>
-      <div class="ml-6">
-        <button @click="makeRequest" class="btn btn-blue">Search</button>
+    <div class="grid grid-cols-6 gap-4">
+      <div class="col-start-2 col-span-3">
+        <input type="text" v-model="searchInput" v-on:keyup.enter="makeRequest" placeholder="search pokemon"/>
       </div>
+      <button @click="makeRequest" class="btn btn-blue">Search</button>
     </div>
-    <img v-bind:src="pokemonImg"/>
+    <div class="grid grid-cols-4 gap-2">
+      <img v-bind:src="pokemonImg"/>
+    </div>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ input[type=text] {
   padding: 5px;
   border: 2px solid #ccc;
   border-radius: 6px;
+  width: 100%;
 }
 
 .btn {
