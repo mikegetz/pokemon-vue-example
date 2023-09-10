@@ -34,9 +34,9 @@ const loadDescription = async (url) => {
 </script>
 
 <template>
-    <div class="ml-20 mt-24">
-    <div class="grid grid-cols-8 gap-4">
-      <div class="col-start-3 col-span-3">
+    <div class="m-24">
+    <div class="grid grid-cols-10 gap-4">
+      <div class="col-start-4 col-span-3">
         <input type="text" v-model="searchInput" v-on:keyup.enter="makeRequest" placeholder="search pokemon"/>
       </div>
         <button @click="makeRequest" class="btn btn-blue">Search</button>
