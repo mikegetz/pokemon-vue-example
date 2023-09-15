@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { pokemonRequest, genericPokemonAPIRequest } from '../api/pokemon-request';
+import { pokemonRequest, loadDescription } from '../api/pokemon-request';
 import PokeCard from './PokeCard.vue';
 
 const searchInput = ref('');
@@ -20,17 +20,6 @@ const makeRequest = async () => {
   searchInput.value = "";
 };
 
-const loadDescription = async (url) => {
-  const speciesResult = await genericPokemonAPIRequest(url);
-  let descriptions = speciesResult.data.flavor_text_entries;
-  descriptions = descriptions.filter((description) => description.language.name === "en");
-  descriptions = descriptions.slice(0, 5);
-  descriptions = descriptions.map((description) => description.flavor_text);
-  descriptions = descriptions.filter((description, index) => descriptions.indexOf(description) === index);
-  descriptions = descriptions.map((description) => description.replace(/[^a-z0-9]/gim, " ").trim());
-  const description = descriptions.join(". ").concat(".");
-  return description;
-};
 </script>
 
 <template>
