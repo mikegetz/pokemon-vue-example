@@ -1,4 +1,5 @@
 import axios from "axios";
+import { dedup, cleanDescriptionsIntoDescription } from "../util/utilities";
 
 const axiosInstance = axios.create({
   baseURL: "https://pokeapi.co/api/v2",
@@ -20,14 +21,27 @@ const genericPokemonAPIRequest = async (url) => {
   return { status, data };
 };
 
+type FlavorText = {
+  flavor_text: string
+  language: {
+    name: string
+  }
+  version: {
+    name: string
+  }
+}
+
+const VERSIONS = ["red" , "blue" , "yellow" , "gold"];
+
 export const loadDescription = async (url) => {
   const speciesResult = await genericPokemonAPIRequest(url);
-  let descriptions = speciesResult.data.flavor_text_entries;
+  let descriptions: Array<FlavorText> = speciesResult.data.flavor_text_entries;
   descriptions = descriptions.filter((description) => description.language.name === "en");
+  descriptions = descriptions.filter((description) => VERSIONS.includes(description.version.name));
   descriptions = descriptions.slice(0, 5);
-  descriptions = descriptions.map((description) => description.flavor_text);
-  descriptions = descriptions.filter((description, index) => descriptions.indexOf(description) === index);
-  descriptions = descriptions.map((description) => description.replace(/[^a-z0-9]/gim, " ").trim());
-  const description = descriptions.join(". ").concat(".");
+
+  let parsedDescriptions: Array<string> = descriptions.map((description) => description.flavor_text);
+  parsedDescriptions = dedup<string>(parsedDescriptions);
+  const description = cleanDescriptionsIntoDescription(parsedDescriptions);
   return description;
 };
