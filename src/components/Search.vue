@@ -29,7 +29,7 @@ const makeRequest = async () => {
 </script>
 
 <template>
-  <div class="m-24">
+  <div class="my-8">
     <div class="grid grid-cols-10 gap-4">
       <div class="col-start-4 col-span-3">
         <input type="text" v-model="searchInput" v-on:keyup.enter="makeRequest" placeholder="search pokemon" />

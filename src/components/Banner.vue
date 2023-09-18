@@ -7,9 +7,16 @@ defineProps({
 </script>
 
 <template>
-  <div v-if="bannerOpen" class="col-start-4 col-span-4 bg-[#f44336] rounded-lg box-shadow-error error-banner">
+  <div v-if="bannerOpen" class="col-start-4 col-span-4 bg-[#f44336] rounded-lg box-shadow-error">
     <div class="flex justify-center">
-      <p>Error - no Pokemon found</p>
+      <div class="py-2">
+        <p>Error - no Pokemon found</p>
+      </div>
+    </div>
+  </div>
+  <div v-if="!bannerOpen" class="col-start-4 col-span-4">
+    <div class="flex justify-center">
+      <div class="py-5"></div>
     </div>
   </div>
 </template>
@@ -22,6 +29,5 @@ defineProps({
 p {
   color: #333333;
   font-family: sans-serif;
-  padding: 8px;
 }
 </style>

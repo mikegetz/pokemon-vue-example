@@ -10,13 +10,13 @@ const axiosInstance = axios.create({
 });
 
 export const pokemonRequest = async (name) => {
-  const promise = axiosInstance.get(`/pokemon/${name}`, {});
+  const promise = axiosInstance.get(`/pokemon/${name}`, { timeout: 3000 });
   const { status, data } = await promise;
   return { status, data };
 };
 
 const genericPokemonAPIRequest = async (url) => {
-  const promise = axiosInstance.get(url, {});
+  const promise = axiosInstance.get(url, { timeout: 3000 });
   const { status, data } = await promise;
   return { status, data };
 };
