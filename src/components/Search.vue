@@ -4,7 +4,7 @@ import { pokemonRequest, loadDescription } from '../api/pokemon-request';
 import Banner from './Banner.vue';
 
 const props = defineProps({
-  method: {
+  searchCallback: {
     type: Function,
   }
 });
@@ -17,8 +17,9 @@ const makeRequest = async () => {
     const img = pokemonResult.data.sprites.other["official-artwork"].front_default;
     const name = pokemonResult.data.name;
     const description = await loadDescription(pokemonResult.data.species.url);
-    props.method!(img, name, description);
+    props.searchCallback!(img, name, description);
   } catch (e) {
+    console.log(e);
     bannerOpen.value = true;
     setTimeout(() => { bannerOpen.value = false; }, 3000);
   }

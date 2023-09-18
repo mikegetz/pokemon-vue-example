@@ -1,16 +1,11 @@
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { Pokemon } from '../types/pokemon';
 import PokeCard from '../components/PokeCard.vue';
 
-const props = defineProps({
+defineProps({
   pokemons: Array<Pokemon>,
 })
-
-onMounted(() => {
-  console.log(props.pokemons);
-});
 
 </script>
 
