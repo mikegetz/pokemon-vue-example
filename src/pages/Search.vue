@@ -3,25 +3,24 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import PokeCard from '../components/PokeCard.vue';
+import { Pokemon } from '../types/pokemon';
+import PokeCards from '../components/PokeCards.vue';
 import Search from '../components/Search.vue'
 
-const pokemonImg = ref('');
-const pokemonName = ref('');
-const pokemeonDescription = ref('');
+const pokemons = ref<Array<Pokemon>>([]);
 
 const searchCallback = (img, name, description) => {
- pokemonImg.value = img;
- pokemonName.value = name;
- pokemeonDescription.value = description;
+  pokemons.value.push({
+    name: name,
+    img: img,
+    description: description,
+  });
 }
 </script>
 
 <template>
-    <div class="m-24">
-    <Search :method="searchCallback"/>
-    <div v-if="pokemonImg" class="grid grid-cols-4 gap-2">
-      <PokeCard :pokemonImg="pokemonImg" :pokemonName="pokemonName" :pokemonDescription="pokemeonDescription"/>
-    </div>
+  <div class="m-24">
+    <Search :method="searchCallback" />
+    <PokeCards :pokemons="pokemons" />
   </div>
 </template>
